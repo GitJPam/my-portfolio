@@ -322,21 +322,50 @@
 </head>
 <body>
     <!-- Header -->
+    <div class="language-switcher">
+      <button onclick="setLanguage('es')">ES</button>
+      <button onclick="setLanguage('en')">EN</button>
+      <button onclick="setLanguage('fr')">FR</button>
+    </div>
+
     <header>
-        <h1>Juan Pablo Acosta Murillo</h1>
-        <p class="subtitle">Ingeniero de Sistemas | Desarrollador de Software | QA e Integraciones</p>
+        <h1 data-lang="es">Juan Pablo Acosta Murillo</h1>
+        <h1 data-lang="en" style="display:none">Juan Pablo Acosta Murillo</h1>
+        <h1 data-lang="fr" style="display:none">Juan Pablo Acosta Murillo</h1>
+
+        <p data-lang="es">
+        Ingeniero de Sistemas con más de 11 años de experiencia en sistemas empresariales.
+        </p>
+        
+        <p data-lang="en" style="display:none">
+        Systems Engineer with more than 11 years of experience in enterprise systems.
+        </p>
+        
+        <p data-lang="fr" style="display:none">
+        Ingénieur systèmes avec plus de 11 ans d’expérience dans les systèmes d’entreprise.
+        </p>
+
         <div class="contact-info">
             <span>📍 Colombia</span>
             <span>📧 sworfishmx@gmail.com - noamx@hotmail.com</span>
             <span>📱 +57 314 610 8783</span>
         </div>
+        
+        <a href="https://github.com/GitJPam" target="_blank">
+          GitHub
+        </a>
+        
+        <a href="https://www.linkedin.com/in/juan-pablo-a-18717046/" target="_blank">
+          LinkedIn
+        </a>
+
         <a href="uploads/CV Juan Pablo Acosta Murillo_C.pdf" class="btn" download>Descargar CV</a>
     </header>
     
     <!-- Navigation -->
     <nav>
         <ul>
-            <li><a href="#about">Sobre Mí</a></li>
+            <li><a href="#about">Perfil Profesional</a></li>
             <li><a href="#experience">Experiencia</a></li>
             <li><a href="#education">Educación</a></li>
             <li><a href="#skills">Habilidades</a></li>
@@ -347,114 +376,120 @@
     
     <!-- About Section -->
     <section id="about">
-        <h2 class="section-title">Sobre Mí</h2>
-        <p>Ingeniero de Sistemas con más de <strong>11 años de experiencia</strong> en empresas de gran escala, especializado en desarrollo de software, aseguramiento de calidad, facturación electrónica, integraciones de sistemas y automatización de procesos. Amplio conocimiento en <strong>C#, SQL Server, Crystal Reports, JasperReports y XSLT</strong>, orientado a garantizar la estabilidad operativa, la calidad del software y la continuidad de los procesos críticos del negocio.</p>
+        <h2 data-lang="es" class="section-title">Perfil Profesional</h2>
+        <h2 data-lang="en" style="display:none" class="section-title">Professional Profile</h2>
+        <h2 data-lang="fr" style="display:none" class="section-title">Profil Professionnel</h2>
+        <p data-lang="es"> Ingeniero de Sistemas con más de <strong>11 años de experiencia</strong> en empresas de gran escala, especializado en desarrollo de software, aseguramiento de calidad, facturación electrónica, integraciones de sistemas y automatización de procesos. Amplio conocimiento en <strong>C#, SQL Server, Crystal Reports, JasperReports y XSLT</strong>, orientado a garantizar la estabilidad operativa, la calidad del software y la continuidad de los procesos críticos del negocio.</p>
+        <p data-lang="en" style="display:none"> Systems Engineer with more than 11 years of experience in software development, enterprise integrations, electronic invoicing and quality assurance in high-availability corporate environments.</p>
+        <p data-lang="fr" style="display:none"> Ingénieur systèmes avec plus de 11 ans d’expérience en développement logiciel, intégrations d’entreprise, facturation électronique et assurance qualité dans des environnements corporatifs à haute disponibilité. </p>
     </section>
     
     <!-- Experience Section -->
     <section id="experience">
-        <h2 class="section-title">Experiencia Profesional</h2>
+        <h2 data-lang="es" class="section-title">Experiencia Profesional</h2>
+        <h2 data-lang="en" style="display:none" class="section-title">Professional Experience</h2>
+        <h2 data-lang="fr" style="display:none" class="section-title">Expérience Professionnelle</h2>
         
         <div class="experience-item fade-in">
-            <h3>Ingeniero de Desarrollo de Software</h3>
-            <p class="company">CARVAJAL TECNOLOGÍA Y SERVICIOS S.A.</p>
-            <p class="period">Agosto 2012 – 2025 | 13 años</p>
+            <h3 data-lang="es">Ingeniero de Desarrollo de Software</h3>
+            <p data-lang="es" class="company">CARVAJAL TECNOLOGÍA Y SERVICIOS S.A.</p>
+            <p data-lang="es" class="period">Agosto 2012 – 2025 | 13 años</p>
             <ul>
-                <li>Desarrollo, mantenimiento y evolución de aplicaciones empresariales en C# (.NET) utilizadas para soportar procesos críticos de facturación electrónica, integraciones corporativas y operaciones financieras.</li>
-                <li>Implementación de integraciones EDI (ASN, GL, IPS) para el intercambio de información entre sistemas internos y plataformas externas.</li>
-                <li>Diseño y construcción de plantillas de facturación electrónica mediante XSLT embebido en HTML, adaptadas a múltiples clientes y regulaciones.</li>
-                <li>Desarrollo y mantenimiento de reportes corporativos utilizando Crystal Reports y JasperReports para control financiero, facturación y monitoreo de operaciones.</li>
-                <li>Transformación y validación de datos mediante XSLT, garantizando la integridad de la información entre sistemas.</li>
-                <li>Ejecución de pruebas funcionales, de integración y validación de datos para asegurar la estabilidad de plataformas empresariales.</li>
-                <li>Automatización de procesos técnicos y operativos para reducir errores, tiempos de procesamiento y reprocesos.</li>
-                <li>Soporte de aplicaciones en producción en ambientes corporativos de alta disponibilidad.</li>
-                <li>Documentación técnica y funcional de sistemas, integraciones y procesos críticos.</li>
+                <li data-lang="es">Desarrollo, mantenimiento y evolución de aplicaciones empresariales en C# (.NET) utilizadas para soportar procesos críticos de facturación electrónica, integraciones corporativas y operaciones financieras.</li>
+                <li data-lang="es">Implementación de integraciones EDI (ASN, GL, IPS) para el intercambio de información entre sistemas internos y plataformas externas.</li>
+                <li data-lang="es">Diseño y construcción de plantillas de facturación electrónica mediante XSLT embebido en HTML, adaptadas a múltiples clientes y regulaciones.</li>
+                <li data-lang="es">Desarrollo y mantenimiento de reportes corporativos utilizando Crystal Reports y JasperReports para control financiero, facturación y monitoreo de operaciones.</li>
+                <li data-lang="es">Transformación y validación de datos mediante XSLT, garantizando la integridad de la información entre sistemas.</li>
+                <li data-lang="es">Ejecución de pruebas funcionales, de integración y validación de datos para asegurar la estabilidad de plataformas empresariales.</li>
+                <li data-lang="es">Automatización de procesos técnicos y operativos para reducir errores, tiempos de procesamiento y reprocesos.</li>
+                <li data-lang="es">Soporte de aplicaciones en producción en ambientes corporativos de alta disponibilidad.</li>
+                <li data-lang="es">Documentación técnica y funcional de sistemas, integraciones y procesos críticos.</li>
             </ul>
         </div>
         
         <div class="experience-item fade-in">
-            <h3>Software Quality Assurance Engineer</h3>
-            <p class="company">ASSENDA S.A. (CARVAJAL TECNOLOGÍA Y SERVICIOS S.A.)</p>
-            <p class="period">Mayo 2009 – Noviembre 2011 | 2 años 7 meses</p>
+            <h3 data-lang="es">Ingeniera de Aseguramiento de Calidad de Software</h3>
+            <p data-lang="es" class="company">ASSENDA S.A. (CARVAJAL TECNOLOGÍA Y SERVICIOS S.A.)</p>
+            <p data-lang="es" class="period">Mayo 2009 – Noviembre 2011 | 2 años 7 meses</p>
             <ul>
-                <li>Ejecución de pruebas funcionales y validación de requisitos para aplicaciones empresariales.</li>
-                <li>Documentación de resultados de pruebas, hallazgos y defectos.</li>
-                <li>Soporte al ciclo de desarrollo de software asegurando el cumplimiento de estándares de calidad.</li>
+                <li data-lang="es">Ejecución de pruebas funcionales y validación de requisitos para aplicaciones empresariales.</li>
+                <li data-lang="es">Documentación de resultados de pruebas, hallazgos y defectos.</li>
+                <li data-lang="es">Soporte al ciclo de desarrollo de software asegurando el cumplimiento de estándares de calidad.</li>
             </ul>
         </div>
         
         <div class="experience-item fade-in">
-            <h3>Systems Technician</h3>
-            <p class="company">3D STAR COMUNICACIONES LTDA</p>
-            <p class="period">Agosto 2006 – Noviembre 2008 | 2 años 4 meses</p>
+            <h3 data-lang="es">Tecnico en Sistemas</h3>
+            <p data-lang="es" class="company">3D STAR COMUNICACIONES LTDA</p>
+            <p data-lang="es" class="period">Agosto 2006 – Noviembre 2008 | 2 años 4 meses</p>
             <ul>
-                <li>Soporte técnico a usuarios.</li>
-                <li>Mantenimiento y configuración de equipos.</li>
-                <li>Ensamble y gestión básica de estaciones de trabajo.</li>
+                <li data-lang="es">Soporte técnico a usuarios.</li>
+                <li data-lang="es">Mantenimiento y configuración de equipos.</li>
+                <li data-lang="es">Ensamble y gestión básica de estaciones de trabajo.</li>
             </ul>
         </div>
     </section>
     
     <!-- Education Section -->
     <section id="education">
-        <h2 class="section-title">Educación</h2>
+        <h2 data-lang="es" class="section-title">Educación</h2>
         
         <div class="education-item fade-in">
-            <h3>Ingeniero de Sistemas</h3>
-            <p class="institution">FUNDACION UNIVERSITARIA SAN MARTIN</p>
-            <p>Año de graduación: 2017</p>
+            <h3 data-lang="es">Ingeniero de Sistemas</h3>
+            <p data-lang="es" class="institution">FUNDACION UNIVERSITARIA SAN MARTIN</p>
+            <p data-lang="es">Año de graduación: 2017</p>
         </div>
         
         <div class="education-item fade-in">
-            <h3>Tecnólogo en Sistemas de Información</h3>
-            <p class="institution">UNIVERSIDAD DEL VALLE</p>
-            <p>Año de graduación: 2002</p>
+            <h3 data-lang="es">Tecnólogo en Sistemas de Información</h3>
+            <p data-lang="es" class="institution">UNIVERSIDAD DEL VALLE</p>
+            <p data-lang="es">Año de graduación: 2002</p>
         </div>
     </section>
     
     <!-- Skills Section -->
     <section id="skills">
-        <h2 class="section-title">Habilidades Técnicas</h2>
+        <h2 data-lang="es" class="section-title">Habilidades Técnicas</h2>
         
         <div class="skills-container">
             <div class="skill-category fade-in">
-                <h3>💻 Lenguajes y Frameworks</h3>
+                <h3 data-lang="es">💻 Lenguajes y Frameworks</h3>
                 <div class="skill-tags">
-                    <span class="skill-tag">C#</span>
-                    <span class="skill-tag">Visual Basic</span>
-                    <span class="skill-tag">XSLT</span>
-                    <span class="skill-tag">HTML</span>
-                    <span class="skill-tag">Java</span>
-                    <span class="skill-tag">PHP</span>
-                    <span class="skill-tag">C / C++</span>
+                    <span data-lang="es" class="skill-tag">C#</span>
+                    <span data-lang="es" class="skill-tag">Visual Basic</span>
+                    <span data-lang="es" class="skill-tag">XSLT</span>
+                    <span data-lang="es" class="skill-tag">HTML</span>
+                    <span data-lang="es" class="skill-tag">Java</span>
+                    <span data-lang="es" class="skill-tag">PHP</span>
+                    <span data-lang="es" class="skill-tag">C / C++</span>
                 </div>
             </div>
             
             <div class="skill-category fade-in">
-                <h3>🗄️ Bases de Datos</h3>
+                <h3 data-lang="es">🗄️ Bases de Datos</h3>
                 <div class="skill-tags">
-                    <span class="skill-tag">SQL Server</span>
-                    <span class="skill-tag">MongoDB</span>
-                    <span class="skill-tag">MySQL</span>
+                    <span data-lang="es" class="skill-tag">SQL Server</span>
+                    <span data-lang="es" class="skill-tag">MongoDB</span>
+                    <span data-lang="es" class="skill-tag">MySQL</span>
                 </div>
             </div>
             
             <div class="skill-category fade-in">
-                <h3>📊 Reporting & Data</h3>
+                <h3 data-lang="es">📊 Reporting & Data</h3>
                 <div class="skill-tags">
-                    <span class="skill-tag">JasperReports</span>
-                    <span class="skill-tag">Crystal Reports</span>
-                    <span class="skill-tag">XSLT Data Transformation</span>
+                    <span data-lang="es" class="skill-tag">JasperReports</span>
+                    <span data-lang="es" class="skill-tag">Crystal Reports</span>
+                    <span data-lang="es" class="skill-tag">XSLT Data Transformation</span>
                 </div>
             </div>
             
             <div class="skill-category fade-in">
-                <h3>🏢 Sistemas Empresariales</h3>
+                <h3 data-lang="es">🏢 Sistemas Empresariales</h3>
                 <div class="skill-tags">
-                    <span class="skill-tag">Facturación Electrónica</span>
-                    <span class="skill-tag">Integraciones EDI</span>
-                    <span class="skill-tag">Automatización de Procesos</span>
-                    <span class="skill-tag">QA</span>
+                    <span data-lang="es" class="skill-tag">Facturación Electrónica</span>
+                    <span data-lang="es" class="skill-tag">Integraciones EDI</span>
+                    <span data-lang="es" class="skill-tag">Automatización de Procesos</span>
+                    <span data-lang="es" class="skill-tag">QA</span>
                 </div>
             </div>
         </div>
@@ -462,40 +497,48 @@
     
     <!-- Certifications Section -->
     <section id="certifications">
-        <h2 class="section-title">Formación Complementaria</h2>
-        <p style="margin-bottom: 30px; color: var(--text-light);">SENA - Programas de formación:</p>
+        <h2 data-lang="es" class="section-title">Formación Complementaria</h2>
+        <p data-lang="es" style="margin-bottom: 30px; color: var(--text-light);">SENA - Programas de formación:</p>
         
         <div class="certifications-grid">
             <div class="certification-item fade-in">
-                <h4>Informática Básica</h4>
+                <h4 data-lang="es">Informática Básica</h4>
             </div>
             <div class="certification-item fade-in">
-                <h4>Sensibilización para el Emprendimiento</h4>
+                <h4 data-lang="es">Sensibilización para el Emprendimiento</h4>
             </div>
             <div class="certification-item fade-in">
-                <h4>Programa de Emprendimiento</h4>
+                <h4 data-lang="es">Programa de Emprendimiento</h4>
             </div>
             <div class="certification-item fade-in">
-                <h4>Visual Basic</h4>
+                <h4 data-lang="es">Visual Basic</h4>
             </div>
         </div>
     </section>
     
     <!-- Contact Section -->
     <section id="contact" style="background-color: var(--light);">
-        <h2 class="section-title">Contacto</h2>
-        <p style="font-size: 1.1rem; margin-bottom: 20px;">¿Interesado en trabajar conmigo? Contáctame a través de:</p>
+        <h2 data-lang="es" class="section-title">Contacto</h2>
+        <p data-lang="es" style="font-size: 1.1rem; margin-bottom: 20px;">¿Interesado en trabajar conmigo? Contáctame a través de:</p>
         <div style="display: flex; flex-direction: column; gap: 15px; align-items: flex-start;">
             <p><strong>📧 Email:</strong> sworfishmx@gmail.com - noamx@hotmail.com</p>
             <p><strong>📱 Teléfono:</strong> +57 314 610 8783</p>
             <p><strong>📍 Ubicación:</strong> Colombia</p>
         </div>
+        
+         <a href="https://github.com/GitJPam" target="_blank">
+          GitHub
+        </a>
+        
+        <a href="https://www.linkedin.com/in/juan-pablo-a-18717046/" target="_blank">
+          LinkedIn
+        </a>
     </section>
     
     <!-- Footer -->
     <footer id="footer">
-        <p>&copy; 2025 Juan Pablo Acosta Murillo. Todos los derechos reservados.</p>
-        <p>Ingeniero de Sistemas | Desarrollador de Software | QA e Integraciones</p>
+        <p data-lang="es">&copy; 2025 Juan Pablo Acosta Murillo. Todos los derechos reservados.</p>
+        <p data-lang="es">Ingeniero de Sistemas | Desarrollador de Software | QA e Integraciones</p>
     </footer>
     
     <script>
@@ -531,7 +574,15 @@
                 }
             });
         });
+
+        //funcion cambio de idioma
+        function setLanguage(lang) {
+          document.querySelectorAll('[data-lang]').forEach(el => {
+            el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+          });
+        }
     </script>
 </body>
 </html>
+
 
