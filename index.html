@@ -322,28 +322,20 @@
 </head>
 <body>
     <!-- Header -->
-    <div class="language-switcher">
-      <button onclick="setLanguage('es')">ES</button>
-      <button onclick="setLanguage('en')">EN</button>
-      <button onclick="setLanguage('fr')">FR</button>
-    </div>
-
     <header>
+        <div class="language-switcher">
+          <button onclick="setLanguage('es')">ES</button>
+          <button onclick="setLanguage('en')">EN</button>
+          <button onclick="setLanguage('fr')">FR</button>
+        </div>
+        
         <h1 data-lang="es">Juan Pablo Acosta Murillo</h1>
         <h1 data-lang="en" style="display:none">Juan Pablo Acosta Murillo</h1>
         <h1 data-lang="fr" style="display:none">Juan Pablo Acosta Murillo</h1>
 
-        <p data-lang="es">
-        Ingeniero de Sistemas con más de 11 años de experiencia en sistemas empresariales.
-        </p>
-        
-        <p data-lang="en" style="display:none">
-        Systems Engineer with more than 11 years of experience in enterprise systems.
-        </p>
-        
-        <p data-lang="fr" style="display:none">
-        Ingénieur systèmes avec plus de 11 ans d’expérience dans les systèmes d’entreprise.
-        </p>
+        <p data-lang="es">Ingeniero de Sistemas | Desarrollador de Software | QA e Integraciones</p>        
+        <p data-lang="en" style="display:none">Systems Engineer | Software Developer | QA & Integration Specialist</p>        
+        <p data-lang="fr" style="display:none">Ingénieur Systèmes | Développeur Logiciel | Spécialiste QA & Intégration</p>
 
         <div class="contact-info">
             <span>📍 Colombia</span>
@@ -358,19 +350,21 @@
         <a href="https://www.linkedin.com/in/juan-pablo-a-18717046/" target="_blank">
           LinkedIn
         </a>
-
-        <a href="uploads/CV Juan Pablo Acosta Murillo_C.pdf" class="btn" download>Descargar CV</a>
+        <br>
+        <a data-lang="es" href="uploads/CV Juan Pablo Acosta Murillo_C.pdf" class="btn" download>Descargar CV</a>
+        <a data-lang="en" style="display:none" href="uploads/CV_Juan_Pablo_Acosta_Murillo.pdf" target="_blank" class="btn">Download Resume</a>
+        <a data-lang="fr" style="display:none" href="uploads/CV_Juan_Pablo_Acosta_Murillo.pdf" target="_blank" class="btn">Télécharger le CV</a>
     </header>
     
     <!-- Navigation -->
     <nav>
         <ul>
-            <li><a href="#about">Perfil Profesional</a></li>
-            <li><a href="#experience">Experiencia</a></li>
-            <li><a href="#education">Educación</a></li>
-            <li><a href="#skills">Habilidades</a></li>
-            <li><a href="#certifications">Formación</a></li>
-            <li><a href="#contact">Contacto</a></li>
+            <li><a data-lang="es" href="#about">Perfil Profesional</a></li>
+            <li><a data-lang="es" href="#experience">Experiencia</a></li>
+            <li><a data-lang="es" href="#education">Educación</a></li>
+            <li><a data-lang="es" href="#skills">Habilidades</a></li>
+            <li><a data-lang="es" href="#certifications">Formación</a></li>
+            <li><a data-lang="es" href="#contact">Contacto</a></li>
         </ul>
     </nav>
     
@@ -584,5 +578,6 @@
     </script>
 </body>
 </html>
+
 
 
