@@ -318,6 +318,22 @@
             background-color: transparent;
             color: var(--white);
         }
+
+        .cv-button-wrapper {
+          text-align: center;
+          margin-top: 20px;
+        }
+
+        .cv-button-wrapper .btn {
+          display: inline-block;     /* CLAVE */
+          width: auto;               /* CLAVE */
+          padding: 12px 24px;
+          font-size: 16px;
+          white-space: nowrap;       /* CLAVE */
+          text-decoration: none;
+          transition: all 0.2s ease-in-out;  
+        }    
+
     </style>
 </head>
 <body>
@@ -351,9 +367,11 @@
           LinkedIn
         </a>
         <br>
-        <a data-lang="es" href="uploads/CV Juan Pablo Acosta Murillo_C.pdf" class="btn" download>Descargar CV</a>
-        <a data-lang="en" style="display:none" href="uploads/CV_Juan_Pablo_Acosta_Murillo.pdf" target="_blank" class="btn">Download Resume</a>
-        <a data-lang="fr" style="display:none" href="uploads/CV_Juan_Pablo_Acosta_Murillo.pdf" target="_blank" class="btn">Télécharger le CV</a>
+        <div class="cv-button-wrapper">
+            <a data-lang="es" href="uploads/CV Juan Pablo Acosta Murillo_es.pdf" class="btn" download>Descargar CV</a>
+            <a data-lang="en" style="display:none" href="uploads/CV_Juan_Pablo_Acosta_Murillo_en.pdf" target="_blank" class="btn">Download Resume</a>
+            <a data-lang="fr" style="display:none" href="uploads/CV_Juan_Pablo_Acosta_Murillo_fr.pdf" target="_blank" class="btn">Télécharger le CV</a>
+        </div>    
     </header>
     
     <!-- Navigation -->
@@ -578,6 +596,7 @@
     </script>
 </body>
 </html>
+
 
 
 
