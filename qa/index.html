@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juan Pablo Acosta | QA Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #090c10;
+      --surface:    #0f1318;
+      --surface2:   #131820;
+      --border:     #1e2530;
+      --accent:     #34d399;
+      --accent-dim: rgba(52,211,153,.12);
+      --accent-glow:rgba(52,211,153,.2);
+      --text:       #e8edf3;
+      --muted:      #6b7a8d;
+      --muted2:     #4a5568;
+      --radius:     14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* background mesh */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 40% at 15% 20%, rgba(52,211,153,.06) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 35% at 85% 80%, rgba(52,211,153,.04) 0%, transparent 60%);
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 2.5rem;
+      background: rgba(9,12,16,.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .nav-logo-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent-glow);
+      animation: pulse 2.5s ease infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 6px var(--accent-glow); }
+      50%      { box-shadow: 0 0 16px var(--accent-glow), 0 0 28px rgba(52,211,153,.1); }
+    }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: .82rem;
+      font-weight: 400;
+      letter-spacing: .04em;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-back {
+      font-size: .78rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--accent);
+      display: flex; align-items: center; gap: .4rem;
+      padding: .35rem .9rem;
+      border: 1px solid rgba(52,211,153,.25);
+      border-radius: 999px;
+      transition: background .2s, border-color .2s;
+    }
+    .nav-back:hover { background: var(--accent-dim); border-color: var(--accent); }
+
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      nav { padding: .9rem 1.25rem; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 2.5rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .35rem 1rem;
+      border: 1px solid rgba(52,211,153,.25);
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      margin-bottom: 1.75rem;
+      width: fit-content;
+      animation: fadeUp .6s ease both;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2.5s ease infinite;
+    }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+      animation: fadeUp .6s .1s ease both;
+    }
+    .hero-title .accent { color: var(--accent); }
+
+    .hero-sub {
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 640px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      animation: fadeUp .6s .2s ease both;
+    }
+
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: .85rem;
+      animation: fadeUp .6s .3s ease both;
+      margin-bottom: 3.5rem;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .75rem 1.5rem;
+      border-radius: 10px;
+      font-size: .88rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all .25s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #090c10;
+      border: 1px solid var(--accent);
+    }
+    .btn-primary:hover { background: #6ee7b7; box-shadow: 0 6px 24px rgba(52,211,153,.3); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--muted2); background: var(--surface); }
+
+    .hero-stats {
+      display: flex; flex-wrap: wrap; gap: 2rem;
+      animation: fadeUp .6s .4s ease both;
+    }
+    .stat { display: flex; flex-direction: column; gap: .2rem; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label { font-size: .78rem; color: var(--muted); letter-spacing: .04em; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTIONS ── */
+    section { position: relative; z-index: 1; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem;
+    }
+
+    .section-label {
+      display: flex; align-items: center; gap: .75rem;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-label::after {
+      content: '';
+      height: 1px; flex: 1;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: 2.75rem;
+      line-height: 1.15;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: .95rem;
+      margin-bottom: 1rem;
+    }
+    .about-text strong { color: var(--text); font-weight: 500; }
+
+    .about-info {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .info-row {
+      display: flex; align-items: center; gap: .85rem;
+      padding: .9rem 1.1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: .875rem;
+    }
+    .info-row .info-icon {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      background: var(--accent-dim);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .95rem;
+      flex-shrink: 0;
+    }
+    .info-row .info-label { color: var(--muted); font-size: .75rem; }
+    .info-row .info-val   { color: var(--text); font-weight: 500; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color .3s, box-shadow .3s, transform .3s;
+    }
+    .skill-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(52,211,153,.1);
+      transform: translateY(-3px);
+    }
+    .skill-card-icon {
+      font-size: 1.5rem;
+      margin-bottom: .85rem;
+    }
+    .skill-card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+    .skill-card-desc {
+      font-size: .825rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .skill-tags {
+      display: flex; flex-wrap: wrap; gap: .35rem;
+    }
+    .tag {
+      padding: .2rem .6rem;
+      border-radius: 5px;
+      font-size: .68rem;
+      font-weight: 500;
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid rgba(52,211,153,.18);
+    }
+    .tag-plain {
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      border-color: var(--border);
+    }
+
+    /* ── EXPERIENCE ── */
+    .timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 19px; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--border) 80%, transparent);
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 1.25rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .tl-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      margin-top: .35rem;
+      justify-self: center;
+      position: relative; z-index: 1;
+      transition: background .2s;
+    }
+    .tl-item:hover .tl-dot { background: var(--accent); }
+
+    .tl-body {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      transition: border-color .3s;
+    }
+    .tl-item:hover .tl-body { border-color: rgba(52,211,153,.3); }
+
+    .tl-period {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: .35rem;
+    }
+    .tl-role {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: .3rem;
+    }
+    .tl-company {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .tl-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .45rem;
+    }
+    .tl-bullets li {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.55;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .tl-bullets li::before {
+      content: '';
+      position: absolute; left: 0; top: .55em;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .tl-tags {
+      display: flex; flex-wrap: wrap; gap: .35rem;
+      margin-top: 1rem;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .3s, box-shadow .3s, transform .3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 12px 40px rgba(52,211,153,.1);
+      transform: translateY(-4px);
+    }
+
+    .project-preview {
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-preview-kiosko {
+      background: linear-gradient(135deg, #0a1628 0%, #0f2040 50%, #0a1628 100%);
+    }
+    .project-preview-finanzas {
+      background: linear-gradient(135deg, #0a1a10 0%, #0d2a18 50%, #0a1a10 100%);
+    }
+
+    .preview-icon {
+      font-size: 3.5rem;
+      opacity: .7;
+      position: relative; z-index: 1;
+    }
+    /* decorative circles in preview */
+    .project-preview::before, .project-preview::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: .15;
+    }
+    .project-preview::before {
+      width: 120px; height: 120px;
+      border: 1px solid var(--accent);
+      top: -20px; right: -20px;
+    }
+    .project-preview::after {
+      width: 70px; height: 70px;
+      border: 1px solid var(--accent);
+      bottom: -10px; left: 10px;
+    }
+
+    .project-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      flex: 1;
+    }
+    .project-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .project-desc {
+      font-size: .845rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .project-stack {
+      display: flex; flex-wrap: wrap; gap: .35rem;
+    }
+    .project-link {
+      display: inline-flex; align-items: center; gap: .4rem;
+      margin-top: auto;
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      transition: gap .2s;
+    }
+    .project-link:hover { gap: .65rem; }
+
+    /* ── EDUCATION ── */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color .3s;
+    }
+    .edu-card:hover { border-color: rgba(52,211,153,.3); }
+    .edu-year {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+    .edu-title {
+      font-family: 'Syne', sans-serif;
+      font-size: .98rem;
+      font-weight: 700;
+      margin-bottom: .3rem;
+    }
+    .edu-institution {
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    .complementary-list {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+      margin-top: 1rem;
+    }
+    .comp-tag {
+      padding: .3rem .8rem;
+      border-radius: 7px;
+      font-size: .75rem;
+      font-weight: 500;
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    /* ── CONTACT ── */
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .contact-box p {
+      color: var(--muted);
+      max-width: 480px;
+      margin: .75rem auto 2rem;
+      line-height: 1.7;
+      font-size: .95rem;
+    }
+    .contact-links {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      text-align: center;
+      font-size: .8rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* ── divider ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 2.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">
+      <div class="nav-logo-dot"></div>
+      Juan Pablo · QA
+    </a>
+    <ul class="nav-links">
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#experiencia">Experiencia</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a class="nav-back" href="../index.html">
+      ← Inicio
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">🇨🇴 Disponible para nuevas oportunidades</div>
+    <h1 class="hero-title">
+      QA Engineer &<br/>
+      <span class="accent">Validación de</span><br/>
+      Integraciones
+    </h1>
+    <p class="hero-sub">
+      Ingeniero de Sistemas con experiencia en aseguramiento de calidad, pruebas funcionales 
+      y validación de datos en entornos empresariales críticos. Sólida base técnica en 
+      backend que potencia la detección temprana de fallos.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#contacto">Contactar</a>
+      <a class="btn btn-outline" href="https://github.com/GitJPam" target="_blank">GitHub</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/juan-pablo-a-18717046/" target="_blank">LinkedIn</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">15+</span>
+        <span class="stat-label">Años de experiencia</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">N3</span>
+        <span class="stat-label">Nivel de soporte</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">EDI</span>
+        <span class="stat-label">Especialidad</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SOBRE MÍ -->
+  <section id="sobre-mi">
+    <div class="container">
+      <div class="section-label">Perfil profesional</div>
+      <h2 class="section-title">Sobre mí</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Soy un <strong>Ingeniero de Sistemas</strong> con más de 15 años de experiencia 
+            en aseguramiento de calidad de software, pruebas funcionales y validación de datos 
+            en entornos empresariales exigentes.
+          </p>
+          <p>
+            He participado en el <strong>diseño y ejecución de pruebas</strong>, validación de 
+            integraciones EDI/EDIFACT, análisis de defectos y aseguramiento de la estabilidad 
+            en ambientes productivos críticos.
+          </p>
+          <p>
+            Mi experiencia en <strong>desarrollo backend con C#</strong> fortalece mi visión 
+            técnica en QA, facilitando la comunicación con equipos de desarrollo y la detección 
+            temprana de fallos antes de llegar a producción.
+          </p>
+          <p>Enfocado en la calidad, el detalle y la mejora continua de procesos.</p>
+        </div>
+        <div class="about-info">
+          <div class="info-row">
+            <div class="info-icon">👤</div>
+            <div>
+              <div class="info-label">Nombre</div>
+              <div class="info-val">Juan Pablo Acosta Murillo</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🎓</div>
+            <div>
+              <div class="info-label">Título</div>
+              <div class="info-val">Ingeniero de Sistemas</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-label">Ubicación</div>
+              <div class="info-val">Colombia 🇨🇴</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📧</div>
+            <div>
+              <div class="info-label">Email</div>
+              <div class="info-val">sworfishmx@gmail.com</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📲</div>
+            <div>
+              <div class="info-label">Teléfono</div>
+              <div class="info-val">314 610 87 83</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- HABILIDADES -->
+  <section id="habilidades">
+    <div class="container">
+      <div class="section-label">Stack técnico</div>
+      <h2 class="section-title">Habilidades</h2>
+      <div class="skills-grid">
+
+        <div class="skill-card">
+          <div class="skill-card-icon">🧪</div>
+          <div class="skill-card-title">Testing Funcional</div>
+          <div class="skill-card-desc">Diseño y ejecución de casos de prueba funcionales, reporte y seguimiento de defectos, generación de indicadores de calidad.</div>
+          <div class="skill-tags">
+            <span class="tag">Testing funcional</span>
+            <span class="tag">Casos de prueba</span>
+            <span class="tag">Bug reporting</span>
+            <span class="tag">SDLC</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-icon">🔗</div>
+          <div class="skill-card-title">Validación de Integraciones</div>
+          <div class="skill-card-desc">Validación funcional y técnica de integraciones EDI/EDIFACT. Verificación de transformaciones en XML, CSV, TXT, planos simples y totales.</div>
+          <div class="skill-tags">
+            <span class="tag">EDI/EDIFACT</span>
+            <span class="tag">XML</span>
+            <span class="tag">CSV/TXT</span>
+            <span class="tag tag-plain">XSLT</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-icon">🗄️</div>
+          <div class="skill-card-title">Validación de Datos & SQL</div>
+          <div class="skill-card-desc">Scripts SQL para validación técnica, depuración y control de datos. Experiencia en validaciones pre y post migración a AWS RDS.</div>
+          <div class="skill-tags">
+            <span class="tag">SQL Server</span>
+            <span class="tag">T-SQL</span>
+            <span class="tag">AWS RDS</span>
+            <span class="tag tag-plain">Scripts BAT</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-icon">🛡️</div>
+          <div class="skill-card-title">Análisis de Defectos</div>
+          <div class="skill-card-desc">Identificación, documentación y seguimiento de defectos. Análisis de causa raíz e incidentes en ambientes productivos críticos.</div>
+          <div class="skill-tags">
+            <span class="tag">Análisis de defectos</span>
+            <span class="tag">Causa raíz</span>
+            <span class="tag">Soporte N3</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-icon">⚙️</div>
+          <div class="skill-card-title">Backend & C# / .NET</div>
+          <div class="skill-card-desc">Conocimientos en desarrollo backend con C# que potencian la visión técnica en QA y facilitan la comunicación con equipos de desarrollo.</div>
+          <div class="skill-tags">
+            <span class="tag tag-plain">C#</span>
+            <span class="tag tag-plain">.NET Framework</span>
+            <span class="tag tag-plain">APIs</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-icon">📊</div>
+          <div class="skill-card-title">Reporting & BI</div>
+          <div class="skill-card-desc">Indicadores de calidad, reportes de hallazgos y análisis con Power BI. Diseño de plantillas de facturación con Crystal Reports y JasperReports.</div>
+          <div class="skill-tags">
+            <span class="tag tag-plain">Power BI</span>
+            <span class="tag tag-plain">Crystal Reports</span>
+            <span class="tag tag-plain">JasperReports</span>
+            <span class="tag tag-plain">DAX</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- EXPERIENCIA -->
+  <section id="experiencia">
+    <div class="container">
+      <div class="section-label">Trayectoria profesional</div>
+      <h2 class="section-title">Experiencia</h2>
+
+      <div class="timeline">
+
+        <!-- 2025 -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-period">2025</div>
+            <div class="tl-role">Soporte Técnico & Validaciones — Migración AWS</div>
+            <div class="tl-company">Carvajal Tecnología y Servicios S.A.</div>
+            <ul class="tl-bullets">
+              <li>Participación en migración de bases de datos SQL Server a AWS RDS junto al equipo de DBAs.</li>
+              <li>Identificación de BD, tablas y dependencias consumidas por aplicaciones en QA y Producción.</li>
+              <li>Definición y solicitud de CNAMEs para ambientes QA y Producción.</li>
+              <li>Creación de scripts BAT y SQL para configuración de CNAMEs, usuarios y sensores.</li>
+              <li>Gestión de conectividad y permisos hacia AWS RDS (puerto 1433).</li>
+              <li>Validación funcional y técnica post-migración. Soporte en estabilización productiva.</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tag">AWS RDS</span>
+              <span class="tag">SQL Server</span>
+              <span class="tag tag-plain">Scripts BAT/SQL</span>
+              <span class="tag tag-plain">Validación</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2020-2024 -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-period">2020 – 2024</div>
+            <div class="tl-role">Ingeniero de Desarrollo — Servicios de Integración</div>
+            <div class="tl-company">Carvajal Tecnología y Servicios S.A.</div>
+            <ul class="tl-bullets">
+              <li>Validación funcional y técnica de integraciones entre sistemas internos y externos.</li>
+              <li>Ejecución de pruebas sobre transformación de datos en formatos EDI, XML, CSV, TXT.</li>
+              <li>Verificación de reglas de negocio y consistencia de información procesada.</li>
+              <li>Identificación, documentación y seguimiento de defectos.</li>
+              <li>Soporte a producción nivel 3: análisis de incidentes y validación de soluciones.</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tag">EDI/EDIFACT</span>
+              <span class="tag">Validación datos</span>
+              <span class="tag tag-plain">Soporte N3</span>
+              <span class="tag tag-plain">XML/CSV</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2016-2020 -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-period">2016 – 2020</div>
+            <div class="tl-role">Analista Técnico — QA y Validación Funcional</div>
+            <div class="tl-company">Carvajal Tecnología y Servicios S.A.</div>
+            <ul class="tl-bullets">
+              <li>Análisis de proyectos y estimación de tiempos.</li>
+              <li>Diseño y ejecución de casos de prueba funcionales.</li>
+              <li>Reporte y análisis de hallazgos.</li>
+              <li>Construcción y soporte de soluciones de integración.</li>
+              <li>Apoyo a procesos de automatización y soporte técnico nivel 3.</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tag">Casos de prueba</span>
+              <span class="tag tag-plain">Estimación</span>
+              <span class="tag tag-plain">Integraciones</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2009-2016 -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-period">2009 – 2016</div>
+            <div class="tl-role">QA Analyst / Software Tester</div>
+            <div class="tl-company">Carvajal Tecnología y Servicios S.A.</div>
+            <ul class="tl-bullets">
+              <li>Diseño y ejecución de pruebas funcionales.</li>
+              <li>Identificación, reporte y seguimiento de defectos.</li>
+              <li>Validación de requerimientos funcionales.</li>
+              <li>Generación de indicadores de calidad.</li>
+              <li>Mejora continua de procesos de testing. Capacitación a usuarios y equipos técnicos.</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tag">QA</span>
+              <span class="tag">Indicadores</span>
+              <span class="tag tag-plain">Capacitación</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos">
+    <div class="container">
+      <div class="section-label">Proyectos personales</div>
+      <h2 class="section-title">Proyectos</h2>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-preview project-preview-kiosko">
+            <div class="preview-icon">🤖</div>
+          </div>
+          <div class="project-body">
+            <div class="project-title">KioskoIA v2.1</div>
+            <div class="project-desc">
+              Aplicación de kiosko con inteligencia artificial integrada. Construida con Bun y base de datos relacional. Arquitectura moderna orientada a servicios.
+            </div>
+            <div class="project-stack">
+              <span class="tag">Bun</span>
+              <span class="tag tag-plain">IA</span>
+              <span class="tag tag-plain">Base de datos</span>
+              <span class="tag tag-plain">Backend</span>
+            </div>
+            <a class="project-link" href="https://github.com/GitJPam/KioskoIA/tree/main/v2.1" target="_blank">
+              Ver en GitHub
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-preview project-preview-finanzas">
+            <div class="preview-icon">💰</div>
+          </div>
+          <div class="project-body">
+            <div class="project-title">Finanzas v4</div>
+            <div class="project-desc">
+              Aplicación de gestión y control financiero personal. Versión 4 con mejoras en análisis de datos, visualización y control de presupuestos.
+            </div>
+            <div class="project-stack">
+              <span class="tag">Bun</span>
+              <span class="tag tag-plain">Finanzas</span>
+              <span class="tag tag-plain">Base de datos</span>
+              <span class="tag tag-plain">Dashboard</span>
+            </div>
+            <a class="project-link" href="https://github.com/GitJPam/Finanzas/tree/v4" target="_blank">
+              Ver en GitHub
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FORMACIÓN -->
+  <section id="formacion">
+    <div class="container">
+      <div class="section-label">Educación</div>
+      <h2 class="section-title">Formación Académica</h2>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="edu-year">2017</div>
+          <div class="edu-title">Ingeniero de Sistemas</div>
+          <div class="edu-institution">Fundación Universitaria San Martín</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-year">2002</div>
+          <div class="edu-title">Tecnólogo en Sistemas de Información</div>
+          <div class="edu-institution">Universidad del Valle</div>
+        </div>
+      </div>
+
+      <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin:2.5rem 0 1rem;color:var(--muted)">Formación Complementaria</h3>
+      <div class="complementary-list">
+        <span class="comp-tag">Informática Básica — SENA</span>
+        <span class="comp-tag">Visual Basic — SENA</span>
+        <span class="comp-tag">Emprendimiento — SENA</span>
+        <span class="comp-tag">Power BI — Platzi/Comfandi</span>
+        <span class="comp-tag">Power BI Avanzado</span>
+        <span class="comp-tag">Análisis con DAX y Power BI</span>
+        <span class="comp-tag">Visualización de datos para BI</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container">
+      <div class="section-label">Contacto</div>
+      <div class="contact-box">
+        <h2 style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;letter-spacing:-.02em;">
+          ¿Tienes un proyecto<br/>o una oportunidad?
+        </h2>
+        <p>
+          Estoy disponible para nuevos retos en QA, validación de integraciones o equipos 
+          que necesiten aseguramiento de calidad con visión técnica.
+        </p>
+        <div class="contact-links">
+          <a class="btn btn-primary" href="mailto:sworfishmx@gmail.com">
+            ✉️ sworfishmx@gmail.com
+          </a>
+          <a class="btn btn-outline" href="https://github.com/GitJPam" target="_blank">GitHub</a>
+          <a class="btn btn-outline" href="https://www.linkedin.com/in/juan-pablo-a-18717046/" target="_blank">LinkedIn</a>
+        </div>
+        <p style="margin-top:1.5rem;font-size:.82rem;">📲 314 610 87 83 &nbsp;·&nbsp; 🇨🇴 Colombia</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Juan Pablo Acosta Murillo — <a href="../index.html">← Volver al inicio</a></p>
+  </footer>
+
+</body>
+</html>

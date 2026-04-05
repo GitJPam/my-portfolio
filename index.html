@@ -1,831 +1,347 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Portfolio profesional de Juan Pablo Acosta Murillo — Ingeniero Backend, Integraciones Empresariales EDI/EDIFACT, C#/.NET, SQL Server y Soporte a Producción con +15 años de experiencia.">
-    <meta name="keywords"
-        content="Juan Pablo Acosta, Ingeniero Backend, C# .NET, EDI EDIFACT, SQL Server, Integraciones Empresariales, Ingeniería de Sistemas Colombia">
-    <meta name="author" content="Juan Pablo Acosta Murillo">
-    <meta property="og:title" content="Juan Pablo Acosta Murillo | Ingeniero Backend">
-    <meta property="og:description"
-        content="Ingeniero Backend especializado en integraciones EDI, transformación de datos y soporte a producción.">
-    <title>Juan Pablo Acosta Murillo | Ingeniero Backend & Sistemas</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juan Pablo Acosta Murillo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
+    :root {
+      --bg:        #090c10;
+      --surface:   #0f1318;
+      --border:    #1e2530;
+      --accent-b:  #38bdf8;   /* backend — sky blue  */
+      --accent-q:  #34d399;   /* qa      — emerald   */
+      --text:      #e8edf3;
+      --muted:     #6b7a8d;
+      --glow-b:    rgba(56,189,248,.18);
+      --glow-q:    rgba(52,211,153,.18);
+    }
 
-    <link rel="stylesheet" href="styles.css">
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      overflow-x: hidden;
+    }
+
+    /* ── background texture ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 20% 30%, rgba(56,189,248,.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 45% at 80% 70%, rgba(52,211,153,.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* grid dots */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+
+    /* ── header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      animation: fadeUp .7s ease both;
+    }
+
+    .avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-b), var(--accent-q));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #090c10;
+      margin: 0 auto 1.25rem;
+      box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--border);
+    }
+
+    .name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+      margin-bottom: .45rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: .95rem;
+      font-weight: 300;
+      letter-spacing: .04em;
+    }
+
+    .subtitle span {
+      display: inline-block;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--muted);
+      vertical-align: middle;
+      margin: 0 .55rem;
+      opacity: .5;
+    }
+
+    /* ── chooser label ── */
+    .choose-label {
+      text-align: center;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+      animation: fadeUp .7s .15s ease both;
+    }
+
+    /* ── cards grid ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 860px;
+      animation: fadeUp .7s .25s ease both;
+    }
+
+    .card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.4rem 2rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 20px;
+      opacity: 0;
+      transition: opacity .35s ease;
+    }
+
+    .card-backend::before  { background: radial-gradient(ellipse 80% 60% at 30% 20%, var(--glow-b), transparent 70%); }
+    .card-qa::before       { background: radial-gradient(ellipse 80% 60% at 30% 20%, var(--glow-q), transparent 70%); }
+
+    .card:hover { transform: translateY(-6px); }
+    .card-backend:hover  { border-color: var(--accent-b); box-shadow: 0 20px 60px rgba(56,189,248,.12); }
+    .card-qa:hover       { border-color: var(--accent-q); box-shadow: 0 20px 60px rgba(52,211,153,.12); }
+    .card:hover::before  { opacity: 1; }
+
+    /* corner accent line */
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 2rem; right: 2rem;
+      height: 2px;
+      border-radius: 0 0 4px 4px;
+      transform: scaleX(0);
+      transition: transform .35s ease;
+    }
+    .card-backend::after { background: linear-gradient(90deg, transparent, var(--accent-b), transparent); }
+    .card-qa::after      { background: linear-gradient(90deg, transparent, var(--accent-q), transparent); }
+    .card:hover::after   { transform: scaleX(1); }
+
+    .card-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .card-backend .card-icon { background: rgba(56,189,248,.1); }
+    .card-qa      .card-icon { background: rgba(52,211,153,.1); }
+
+    .card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .25rem .75rem;
+      border-radius: 999px;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      align-self: flex-start;
+    }
+    .card-backend .card-badge { background: rgba(56,189,248,.1); color: var(--accent-b); border: 1px solid rgba(56,189,248,.2); }
+    .card-qa      .card-badge { background: rgba(52,211,153,.1); color: var(--accent-q); border: 1px solid rgba(52,211,153,.2); }
+
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -.01em;
+    }
+
+    .card-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+
+    .pill {
+      padding: .28rem .7rem;
+      border-radius: 6px;
+      font-size: .72rem;
+      font-weight: 500;
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .card-backend .pill-accent { color: var(--accent-b); background: rgba(56,189,248,.07); border-color: rgba(56,189,248,.15); }
+    .card-qa      .pill-accent { color: var(--accent-q); background: rgba(52,211,153,.07); border-color: rgba(52,211,153,.15); }
+
+    .card-desc {
+      font-size: .875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .card-cta {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .85rem;
+      font-weight: 500;
+      margin-top: auto;
+      padding-top: .5rem;
+    }
+    .card-backend .card-cta { color: var(--accent-b); }
+    .card-qa      .card-cta { color: var(--accent-q); }
+
+    .card-cta svg { transition: transform .25s ease; }
+    .card:hover .card-cta svg { transform: translateX(5px); }
+
+    /* ── footer ── */
+    .footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: .78rem;
+      color: var(--muted);
+      animation: fadeUp .7s .4s ease both;
+    }
+    .footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s, color .2s; }
+    .footer a:hover { color: var(--text); border-color: var(--muted); }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: .6rem; }
+
+    /* ── animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── responsive ── */
+    @media (max-width: 540px) {
+      .cards { grid-template-columns: 1fr; }
+      .card { padding: 1.75rem 1.5rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- ======================== NAVBAR ======================== -->
-    <nav class="navbar" id="navbar">
-        <div class="container nav-container">
-            <a href="#hero" class="nav-logo">
-                <img src="images/logo.png" alt="JP Logo" class="logo-img">
-                <span class="logo-text">Juan Pablo<span class="logo-accent">.</span></span>
-            </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#sobre-mi" class="nav-link" data-i18n="nav-sobre">Sobre Mí</a></li>
-                <li><a href="#habilidades" class="nav-link" data-i18n="nav-habilidades">Habilidades</a></li>
-                <li><a href="#experiencia" class="nav-link" data-i18n="nav-experiencia">Experiencia</a></li>
-                <li><a href="#formacion" class="nav-link" data-i18n="nav-formacion">Formación</a></li>
-                <li><a href="#contacto" class="nav-link nav-link-cta" data-i18n="nav-contacto">Contacto</a></li>
-            </ul>
-            <div class="lang-switcher" id="langSwitcher">
-                <button class="lang-btn active" data-lang="es">ES</button>
-                <button class="lang-btn" data-lang="en">EN</button>
-                <button class="lang-btn" data-lang="fr">FR</button>
-            </div>
-            <button class="mobile-menu-toggle" id="mobileToggle" aria-label="Abrir menú">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <ul>
-                <li><a href="#sobre-mi" class="nav-link" data-i18n="nav-sobre" onclick="closeMobileMenu()">Sobre Mí</a>
-                </li>
-                <li><a href="#habilidades" class="nav-link" data-i18n="nav-habilidades"
-                        onclick="closeMobileMenu()">Habilidades</a></li>
-                <li><a href="#experiencia" class="nav-link" data-i18n="nav-experiencia"
-                        onclick="closeMobileMenu()">Experiencia</a></li>
-                <li><a href="#formacion" class="nav-link" data-i18n="nav-formacion"
-                        onclick="closeMobileMenu()">Formación</a></li>
-                <li><a href="#contacto" class="nav-link" data-i18n="nav-contacto"
-                        onclick="closeMobileMenu()">Contacto</a></li>
-            </ul>
-        </div>
-    </nav>
+  <header class="header">
+    <div class="avatar">JP</div>
+    <h1 class="name">Juan Pablo Acosta Murillo</h1>
+    <p class="subtitle">
+      Ingeniero de Sistemas
+      <span></span>
+      +15 años de experiencia
+      <span></span>
+      Colombia 🇨🇴
+    </p>
+  </header>
 
-    <!-- ======================== HERO ======================== -->
-    <section class="hero" id="hero">
-        <div class="particles-container" id="particlesContainer"></div>
-        <div class="hero-bg-gradient"></div>
+  <p class="choose-label">Selecciona un perfil</p>
 
-        <div class="container hero-container">
-            <div class="hero-content">
-                <div class="hero-badge animate-fade-up">
-                    <span class="badge-dot"></span>
-                    <span data-i18n="hero-badge">🇨🇴 Disponible para nuevas oportunidades</span>
-                </div>
+  <div class="cards">
 
-                <h1 class="hero-title animate-fade-up delay-1">
-                    Juan Pablo<br>
-                    <span class="hero-title-accent">Acosta Murillo</span>
-                </h1>
+    <!-- BACKEND -->
+    <a class="card card-backend" href="./backend/index.html">
+      <div class="card-icon">⚙️</div>
+      <span class="card-badge">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+        Disponible
+      </span>
+      <h2 class="card-title">Ingeniero Backend<br/>& Integraciones Empresariales</h2>
+      <div class="card-pills">
+        <span class="pill pill-accent">C# / .NET</span>
+        <span class="pill pill-accent">EDI/EDIFACT</span>
+        <span class="pill pill-accent">SQL Server</span>
+        <span class="pill">AWS RDS</span>
+        <span class="pill">Soporte N3</span>
+      </div>
+      <p class="card-desc">
+        Desarrollo de soluciones backend, transformación de datos e integraciones 
+        empresariales críticas con más de 15 años en Carvajal T&S.
+      </p>
+      <div class="card-cta">
+        Ver portafolio Backend
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </a>
 
-                <div class="hero-roles animate-fade-up delay-2">
-                    <span class="role-tag" id="roleCycler">Ingeniero Backend</span>
-                </div>
+    <!-- QA -->
+    <a class="card card-qa" href="./qa/index.html">
+      <div class="card-icon">🧪</div>
+      <span class="card-badge">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+        Disponible
+      </span>
+      <h2 class="card-title">QA Engineer<br/>& Validación de Integraciones</h2>
+      <div class="card-pills">
+        <span class="pill pill-accent">Testing Funcional</span>
+        <span class="pill pill-accent">Validación de Datos</span>
+        <span class="pill pill-accent">Integraciones</span>
+        <span class="pill">SQL Server</span>
+        <span class="pill">SDLC</span>
+      </div>
+      <p class="card-desc">
+        Aseguramiento de calidad, diseño de casos de prueba, análisis de defectos 
+        y validación en entornos empresariales críticos e integraciones EDI.
+      </p>
+      <div class="card-cta">
+        Ver portafolio QA
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </a>
 
-                <p class="hero-subtitle animate-fade-up delay-3" data-i18n-html="hero-subtitle">
-                    Ingeniero de Sistemas con <strong>+15 años de experiencia</strong> en desarrollo de soluciones
-                    empresariales.
-                    Especializado en integraciones <span class="text-accent">EDI/EDIFACT</span>, transformación de
-                    datos,
-                    facturación electrónica y soporte crítico a producción.
-                </p>
+  </div>
 
-                <div class="hero-ctas animate-fade-up delay-4">
-                    <a href="#contacto" class="btn-primary" id="ctaContact">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                            <polyline points="22,6 12,13 2,6" />
-                        </svg>
-                        <span data-i18n="cta-contact">Contactar</span>
-                    </a>
-                    <a href="https://github.com/GitJPam" target="_blank" rel="noopener" class="btn-secondary"
-                        id="ctaGithub">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                        </svg>
-                        GitHub
-                    </a>
-                    <a href="https://www.linkedin.com/in/juan-pablo-a-18717046/" target="_blank" rel="noopener"
-                        class="btn-secondary" id="ctaLinkedin">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                        </svg>
-                        LinkedIn
-                    </a>
-                    <a href="cv/CV_Juan_Pablo_Acosta_Murillo_es.pdf" target="_blank" class="btn-cv" id="ctaCV">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                            <polyline points="14 2 14 8 20 8" />
-                            <line x1="16" y1="13" x2="8" y2="13" />
-                            <line x1="16" y1="17" x2="8" y2="17" />
-                            <polyline points="10 9 9 9 8 9" />
-                        </svg>
-                        <span data-i18n="cta-cv">Ver / Descargar CV</span>
-                    </a>
-                </div>
+  <footer class="footer">
+    <p>sworfishmx@gmail.com &nbsp;·&nbsp; 314 610 87 83</p>
+    <div class="footer-links">
+      <a href="https://github.com/GitJPam" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/juan-pablo-a-18717046/" target="_blank">LinkedIn</a>
+    </div>
+  </footer>
 
-                <div class="hero-stats animate-fade-up delay-5">
-                    <div class="stat-item">
-                        <span class="stat-value" data-target="15">0</span><span class="stat-plus">+</span>
-                        <span class="stat-label" data-i18n="stat-exp">Años de exp.</span>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <span class="stat-value" data-target="200">0</span><span class="stat-plus">+</span>
-                        <span class="stat-label" data-i18n="stat-int">Integraciones</span>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <span class="stat-value" data-target="3">0</span><span class="stat-plus"></span>
-                        <span class="stat-label" data-i18n="stat-soporte">Nivel Soporte</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="hero-visual animate-fade-rotate">
-                <div class="hero-visual-glow"></div>
-                <div class="hero-visual-ring ring-1"></div>
-                <div class="hero-visual-ring ring-2"></div>
-                <div class="hero-visual-ring ring-3"></div>
-                <img src="images/hero_visual.png" alt="Backend Engineering Visual" class="hero-visual-img"
-                    id="heroVisual">
-                <div class="hero-floating-badge badge-csharp">
-                    <span class="mono">&lt;C#/&gt;</span>
-                </div>
-                <div class="hero-floating-badge badge-net">
-                    <span>.NET</span>
-                </div>
-                <div class="hero-floating-badge badge-edi">
-                    <span>EDI</span>
-                </div>
-                <div class="hero-floating-badge badge-sql">
-                    <span>SQL</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <div class="scroll-dot"></div>
-        </div>
-    </section>
-
-    <!-- ======================== SOBRE MÍ ======================== -->
-    <section class="section sobre-mi" id="sobre-mi">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label" data-i18n="label-sobre">👨‍💻 Perfil Profesional</span>
-                <h2 class="section-title" data-i18n-html="title-sobre">Sobre <span class="text-accent">Mí</span></h2>
-            </div>
-
-            <div class="sobre-mi-grid">
-                <div class="sobre-mi-left reveal">
-                    <div class="profile-card glass-card">
-                        <div class="profile-avatar-wrapper">
-                            <div class="profile-avatar-ring"></div>
-                            <div class="profile-avatar">
-                                <img src="images/logo.png" alt="JP" class="profile-logo">
-                            </div>
-                        </div>
-                        <h3 class="profile-name">Juan Pablo Acosta M.</h3>
-                        <p class="profile-role">Ingeniero de Sistemas</p>
-                        <div class="profile-info">
-                            <div class="profile-info-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                                    <circle cx="12" cy="10" r="3" />
-                                </svg>
-                                <span>Colombia 🇨🇴</span>
-                            </div>
-                            <div class="profile-info-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path
-                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                                    <polyline points="22,6 12,13 2,6" />
-                                </svg>
-                                <span>sworfishmx@gmail.com</span>
-                            </div>
-                            <div class="profile-info-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path
-                                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014 10.94a19.79 19.79 0 01-3.07-8.67A2 2 0 012.93 0h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-                                </svg>
-                                <span>314 610 87 83</span>
-                            </div>
-                        </div>
-                        <div class="profile-socials">
-                            <a href="https://github.com/GitJPam" target="_blank" class="social-btn" id="socialGithub"
-                                aria-label="GitHub">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                </svg>
-                            </a>
-                            <a href="https://www.linkedin.com/in/juan-pablo-a-18717046/" target="_blank"
-                                class="social-btn" id="socialLinkedin" aria-label="LinkedIn">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                                </svg>
-                            </a>
-                            <a href="mailto:sworfishmx@gmail.com" class="social-btn" id="socialEmail"
-                                aria-label="Email">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path
-                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                                    <polyline points="22,6 12,13 2,6" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sobre-mi-right reveal">
-                    <p class="about-text" data-i18n-html="about-p1">
-                        Soy un <strong class="text-accent">Ingeniero de Sistemas</strong> con más de 15 años de
-                        experiencia
-                        construyendo soluciones tecnológicas robustas en entornos empresariales exigentes.
-                        Mi carrera se ha desarrollado principalmente en <strong>Carvajal Tecnología y
-                            Servicios</strong>,
-                        donde evolucioné desde QA hasta Ingeniero Senior de Integraciones.
-                    </p>
-                    <p class="about-text">
-                        Me especializo en el desarrollo backend con <span class="text-accent">C# / .NET</span>, en
-                        la construcción de integraciones <span class="text-accent">EDI/EDIFACT</span> para documentos
-                        empresariales críticos (ORDERS, DESADV, INVOIC), y en la transformación de datos entre formatos
-                        heterogéneos (XML, XLS, TXT, CSV).
-                    </p>
-                    <p class="about-text">
-                        Mi sólida formación en <strong>QA</strong> complementa mi perfil, permitiéndome aportar
-                        calidad y estabilidad en cada etapa del ciclo de vida del software, desde el diseño
-                        hasta el soporte nivel 3 en producción.
-                    </p>
-
-                    <div class="about-highlights">
-                        <div class="highlight-card glass-card reveal-card">
-                            <div class="highlight-icon">🔧</div>
-                            <div>
-                                <h4>Backend & Integraciones</h4>
-                                <p>Especialista en C#, .NET y EDI/EDIFACT para conectar sistemas empresariales críticos.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="highlight-card glass-card reveal-card">
-                            <div class="highlight-icon">🗄️</div>
-                            <div>
-                                <h4>Datos & Cloud</h4>
-                                <p>Experiencia en SQL Server y participación en migración a AWS RDS con validación
-                                    funcional.</p>
-                            </div>
-                        </div>
-                        <div class="highlight-card glass-card reveal-card">
-                            <div class="highlight-icon">🛡️</div>
-                            <div>
-                                <h4>Calidad & Producción</h4>
-                                <p>Formación sólida en QA y soporte técnico nivel 3 a aplicaciones críticas en
-                                    producción.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======================== HABILIDADES ======================== -->
-    <section class="section habilidades" id="habilidades">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label">⚡ Stack Tecnológico</span>
-                <h2 class="section-title">Habilidades <span class="text-accent">Técnicas</span></h2>
-            </div>
-
-            <!-- Skill Cards con Flip -->
-            <div class="skills-grid">
-
-                <!-- CARD 1: Backend -->
-                <div class="service-card-flip reveal-card">
-                    <div class="service-card-inner">
-                        <div class="service-card-front">
-                            <img src="images/service_1.png" alt="Backend C# .NET" class="service-image">
-                            <div class="service-overlay">
-                                <div class="service-icon-front">🖥️</div>
-                                <h3 class="service-title-front">Backend & C# / .NET</h3>
-                            </div>
-                        </div>
-                        <div class="service-card-back glass-card">
-                            <div class="service-icon-back">🖥️</div>
-                            <h3 class="service-title-back">Backend & Desarrollo</h3>
-                            <p class="service-description">Desarrollo de aplicaciones backend robustas con C# y .NET
-                                Framework, usando plantillas y frameworks internos para estandarizar soluciones
-                                empresariales.</p>
-                            <div class="service-features">
-                                <span class="feature-tag">C#</span>
-                                <span class="feature-tag">.NET Framework</span>
-                                <span class="feature-tag">OOP</span>
-                                <span class="feature-tag">APIs</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD 2: EDI/EDIFACT -->
-                <div class="service-card-flip reveal-card">
-                    <div class="service-card-inner">
-                        <div class="service-card-front">
-                            <img src="images/service_2.png" alt="EDI EDIFACT" class="service-image">
-                            <div class="service-overlay">
-                                <div class="service-icon-front">🔗</div>
-                                <h3 class="service-title-front">Integraciones EDI/EDIFACT</h3>
-                            </div>
-                        </div>
-                        <div class="service-card-back glass-card">
-                            <div class="service-icon-back">🔗</div>
-                            <h3 class="service-title-back">Integraciones Empresariales</h3>
-                            <p class="service-description">Construcción de mapas de transformación EDI/EDIFACT para
-                                documentos como ORDERS, DESADV, INVOIC, INVRPT, SLSRPT entre sistemas internos y
-                                externos.</p>
-                            <div class="service-features">
-                                <span class="feature-tag">EDIFACT</span>
-                                <span class="feature-tag">XML</span>
-                                <span class="feature-tag">XSLT</span>
-                                <span class="feature-tag">CSV/TXT</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD 3: SQL Server -->
-                <div class="service-card-flip reveal-card">
-                    <div class="service-card-inner">
-                        <div class="service-card-front">
-                            <img src="images/service_3.png" alt="SQL Server" class="service-image">
-                            <div class="service-overlay">
-                                <div class="service-icon-front">🗄️</div>
-                                <h3 class="service-title-front">SQL Server & Datos</h3>
-                            </div>
-                        </div>
-                        <div class="service-card-back glass-card">
-                            <div class="service-icon-back">🗄️</div>
-                            <h3 class="service-title-back">Gestión de Datos</h3>
-                            <p class="service-description">Diseño y ejecución de scripts SQL para mantenimiento,
-                                depuración y control de datos. Experiencia en validaciones técnicas pre y post
-                                migración.</p>
-                            <div class="service-features">
-                                <span class="feature-tag">SQL Server</span>
-                                <span class="feature-tag">Scripts T-SQL</span>
-                                <span class="feature-tag">Jobs</span>
-                                <span class="feature-tag">AWS RDS</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD 4: AWS/Cloud (imagen SVG fallback) -->
-                <div class="service-card-flip reveal-card">
-                    <div class="service-card-inner">
-                        <div class="service-card-front service-card-front-svg">
-                            <div class="service-svg-bg">
-                                <div class="service-svg-icon">☁️</div>
-                            </div>
-                            <div class="service-overlay">
-                                <div class="service-icon-front">☁️</div>
-                                <h3 class="service-title-front">Migración AWS</h3>
-                            </div>
-                        </div>
-                        <div class="service-card-back glass-card">
-                            <div class="service-icon-back">☁️</div>
-                            <h3 class="service-title-back">Cloud & AWS RDS</h3>
-                            <p class="service-description">Participación activa en migración de bases de datos SQL
-                                Server a AWS RDS: mapeo de dependencias, gestión de conectividad, CNAMEs y validación
-                                post-migración.</p>
-                            <div class="service-features">
-                                <span class="feature-tag">AWS RDS</span>
-                                <span class="feature-tag">CNAME</span>
-                                <span class="feature-tag">Puerto 1433</span>
-                                <span class="feature-tag">Validación</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD 5: QA -->
-                <div class="service-card-flip reveal-card">
-                    <div class="service-card-inner">
-                        <div class="service-card-front service-card-front-svg">
-                            <div class="service-svg-bg">
-                                <div class="service-svg-icon">🛡️</div>
-                            </div>
-                            <div class="service-overlay">
-                                <div class="service-icon-front">🛡️</div>
-                                <h3 class="service-title-front">QA & Calidad</h3>
-                            </div>
-                        </div>
-                        <div class="service-card-back glass-card">
-                            <div class="service-icon-back">🛡️</div>
-                            <h3 class="service-title-back">Quality Assurance</h3>
-                            <p class="service-description">Sólida formación en QA: diseño y ejecución de pruebas
-                                funcionales, reporte de hallazgos, indicadores de calidad, mejora continua de procesos y
-                                capacitación de equipos.</p>
-                            <div class="service-features">
-                                <span class="feature-tag">Pruebas funcionales</span>
-                                <span class="feature-tag">Casos de prueba</span>
-                                <span class="feature-tag">Indicadores</span>
-                                <span class="feature-tag">QA</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD 6: Reporting -->
-                <div class="service-card-flip reveal-card">
-                    <div class="service-card-inner">
-                        <div class="service-card-front service-card-front-svg">
-                            <div class="service-svg-bg">
-                                <div class="service-svg-icon">📊</div>
-                            </div>
-                            <div class="service-overlay">
-                                <div class="service-icon-front">📊</div>
-                                <h3 class="service-title-front">Reporting & Facturación</h3>
-                            </div>
-                        </div>
-                        <div class="service-card-back glass-card">
-                            <div class="service-icon-back">📊</div>
-                            <h3 class="service-title-back">Reporting & Facturación Electrónica</h3>
-                            <p class="service-description">Desarrollo y diseño de facturación electrónica y reportes
-                                empresariales usando Crystal Reports, JasperReports y XSLT embebido en HTML.</p>
-                            <div class="service-features">
-                                <span class="feature-tag">Crystal Reports</span>
-                                <span class="feature-tag">JasperReports</span>
-                                <span class="feature-tag">XSLT</span>
-                                <span class="feature-tag">Power BI</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tech Pills -->
-            <div class="tech-pills-container reveal">
-                <h3 class="tech-pills-title">Tecnologías que manejo</h3>
-                <div class="tech-pills">
-                    <span class="tech-pill">C#</span>
-                    <span class="tech-pill">.NET Framework</span>
-                    <span class="tech-pill">EDI/EDIFACT</span>
-                    <span class="tech-pill">SQL Server</span>
-                    <span class="tech-pill">AWS RDS</span>
-                    <span class="tech-pill">XSLT</span>
-                    <span class="tech-pill">XML</span>
-                    <span class="tech-pill">Crystal Reports</span>
-                    <span class="tech-pill">JasperReports</span>
-                    <span class="tech-pill">Power BI</span>
-                    <span class="tech-pill">Scripts BAT</span>
-                    <span class="tech-pill">T-SQL</span>
-                    <span class="tech-pill">DAX</span>
-                    <span class="tech-pill">Visual Basic</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======================== EXPERIENCIA ======================== -->
-    <section class="section experiencia" id="experiencia">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label">💼 Trayectoria</span>
-                <h2 class="section-title">Experiencia <span class="text-accent">Profesional</span></h2>
-            </div>
-
-            <div class="timeline">
-                <!-- Empresa principal -->
-                <div class="timeline-company reveal">
-                    <div class="company-header glass-card">
-                        <div class="company-logo-placeholder">CTS</div>
-                        <div class="company-info">
-                            <h3 class="company-name">Carvajal Tecnología y Servicios S.A.</h3>
-                            <p class="company-role">Analista de Aplicaciones / Desarrollador Backend / Ingeniero de
-                                Integraciones</p>
-                            <span class="company-period">Mayo 2009 – Noviembre 2025</span>
-                        </div>
-                        <div class="company-badge">16+ años</div>
-                    </div>
-
-                    <div class="timeline-roles">
-
-                        <!-- Rol 1 -->
-                        <div class="timeline-role reveal-card">
-                            <div class="role-connector">
-                                <div class="role-dot"></div>
-                                <div class="role-line"></div>
-                            </div>
-                            <div class="role-content glass-card">
-                                <div class="role-header">
-                                    <h4 class="role-title">Ingeniero Senior / Ingeniero de Desarrollo – Servicios de
-                                        Integración</h4>
-                                    <span class="role-period">2020 – 2024</span>
-                                </div>
-                                <ul class="role-bullets">
-                                    <li>Desarrollo y mantenimiento de aplicaciones backend para integración y
-                                        transformación de archivos entre sistemas internos y externos.</li>
-                                    <li>Construcción de mapas de transformación para conversión en formatos EDI, XML,
-                                        XLS, TXT, CSV, planos simples y planos totales.</li>
-                                    <li>Desarrollo en C# (.NET) con plantillas y frameworks internos para estandarizar
-                                        soluciones.</li>
-                                    <li>Soporte a documentos empresariales: <span class="text-accent">ORDERS, DESADV,
-                                            INVOIC, INVRPT, SLSRPT</span>.</li>
-                                    <li>Desarrollo de facturación electrónica (Crystal Reports, JasperReports, XSLT).
-                                    </li>
-                                    <li>Soporte técnico nivel 3 y documentación técnica/funcional.</li>
-                                </ul>
-                                <div class="role-tags">
-                                    <span class="role-tag-item">C#/.NET</span>
-                                    <span class="role-tag-item">EDI/EDIFACT</span>
-                                    <span class="role-tag-item">Facturación Electrónica</span>
-                                    <span class="role-tag-item">Soporte N3</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Rol AWS -->
-                        <div class="timeline-role reveal-card">
-                            <div class="role-connector">
-                                <div class="role-dot role-dot-cloud"></div>
-                                <div class="role-line"></div>
-                            </div>
-                            <div class="role-content glass-card">
-                                <div class="role-header">
-                                    <h4 class="role-title">Participación en Proceso de Migración a AWS (Soporte Técnico
-                                        y Validaciones)</h4>
-                                    <span class="role-period">2025</span>
-                                </div>
-                                <ul class="role-bullets">
-                                    <li>Participación en migración de bases de datos SQL Server a <span
-                                            class="text-accent">AWS RDS</span>, trabajando con equipo de DBAs.</li>
-                                    <li>Identificación de bases de datos, tablas, dependencias consumidas por
-                                        aplicaciones en QA y Producción.</li>
-                                    <li>Definición y solicitud de CNAMEs para QA y Producción.</li>
-                                    <li>Creación de scripts BAT y SQL para configuración de CNAMEs, usuarios, sensores y
-                                        mantenimiento de tablas.</li>
-                                    <li>Gestión de conectividad y permisos hacia AWS RDS (puerto 1433).</li>
-                                    <li>Validación funcional y técnica post-migración. Soporte en estabilización
-                                        productiva.</li>
-                                </ul>
-                                <div class="role-tags">
-                                    <span class="role-tag-item">AWS RDS</span>
-                                    <span class="role-tag-item">SQL Server</span>
-                                    <span class="role-tag-item">Scripts BAT/SQL</span>
-                                    <span class="role-tag-item">Validación</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Rol 2 -->
-                        <div class="timeline-role reveal-card">
-                            <div class="role-connector">
-                                <div class="role-dot"></div>
-                                <div class="role-line"></div>
-                            </div>
-                            <div class="role-content glass-card">
-                                <div class="role-header">
-                                    <h4 class="role-title">Técnico Especializado – Servicios de Integración</h4>
-                                    <span class="role-period">2016 – 2020</span>
-                                </div>
-                                <ul class="role-bullets">
-                                    <li>Análisis de proyectos y estimación de tiempos.</li>
-                                    <li>Diseño y ejecución de casos de prueba funcionales. Reporte y análisis de
-                                        hallazgos.</li>
-                                    <li>Construcción y soporte de soluciones de integración.</li>
-                                    <li>Diseño y mantenimiento de plantillas de facturación y reportes.</li>
-                                    <li>Apoyo a procesos de automatización y soporte técnico nivel 3.</li>
-                                </ul>
-                                <div class="role-tags">
-                                    <span class="role-tag-item">Integraciones</span>
-                                    <span class="role-tag-item">Estimación</span>
-                                    <span class="role-tag-item">Automatización</span>
-                                    <span class="role-tag-item">Reportes</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Rol 3 -->
-                        <div class="timeline-role reveal-card">
-                            <div class="role-connector">
-                                <div class="role-dot role-dot-qa"></div>
-                            </div>
-                            <div class="role-content glass-card">
-                                <div class="role-header">
-                                    <h4 class="role-title">Técnico Especializado QA / Técnico de Calidad</h4>
-                                    <span class="role-period">2009 – 2016</span>
-                                </div>
-                                <ul class="role-bullets">
-                                    <li>Diseño y ejecución de pruebas funcionales. Reporte y análisis de defectos.</li>
-                                    <li>Generación de indicadores de calidad.</li>
-                                    <li>Mejora continua de procesos.</li>
-                                    <li>Capacitación a usuarios y equipos técnicos.</li>
-                                </ul>
-                                <div class="role-tags">
-                                    <span class="role-tag-item">QA</span>
-                                    <span class="role-tag-item">Pruebas funcionales</span>
-                                    <span class="role-tag-item">Indicadores</span>
-                                    <span class="role-tag-item">Capacitación</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======================== FORMACION ======================== -->
-    <section class="section formacion" id="formacion">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label">🎓 Educación</span>
-                <h2 class="section-title">Formación <span class="text-accent">Académica</span></h2>
-            </div>
-
-            <div class="formacion-grid">
-                <!-- Académica -->
-                <div class="formacion-col reveal">
-                    <h3 class="formacion-col-title">
-                        <span class="formacion-col-icon">🏛️</span>
-                        <span data-i18n="formacion-col1">Formación Académica</span>
-                    </h3>
-                    <div class="edu-card glass-card">
-                        <div class="edu-card-year">2017</div>
-                        <div class="edu-card-info">
-                            <h4>Ingeniero de Sistemas</h4>
-                            <p>Fundación Universitaria San Martín</p>
-                        </div>
-                        <div class="edu-degree-badge">Ing. Sistemas</div>
-                    </div>
-                    <div class="edu-card glass-card">
-                        <div class="edu-card-year">2002</div>
-                        <div class="edu-card-info">
-                            <h4>Tecnólogo en Sistemas de Información</h4>
-                            <p>Universidad del Valle</p>
-                        </div>
-                        <div class="edu-degree-badge">Tecnólogo</div>
-                    </div>
-                </div>
-
-                <!-- Complementaria -->
-                <div class="formacion-col reveal">
-                    <h3 class="formacion-col-title">
-                        <span class="formacion-col-icon">📚</span>
-                        Formación Complementaria
-                    </h3>
-
-                    <div class="cert-group glass-card">
-                        <div class="cert-group-header">
-                            <span class="cert-institution">SENA</span>
-                        </div>
-                        <div class="cert-list">
-                            <div class="cert-item"><span class="cert-dot"></span>Informática Básica</div>
-                            <div class="cert-item"><span class="cert-dot"></span>Sensibilización para el Emprendimiento
-                            </div>
-                            <div class="cert-item"><span class="cert-dot"></span>Programa de Emprendimiento</div>
-                            <div class="cert-item"><span class="cert-dot"></span>Visual Basic</div>
-                        </div>
-                    </div>
-
-                    <div class="cert-group glass-card">
-                        <div class="cert-group-header">
-                            <span class="cert-institution">Platzi / Comfandi</span>
-                        </div>
-                        <div class="cert-list">
-                            <div class="cert-item"><span class="cert-dot"></span>Power BI</div>
-                            <div class="cert-item"><span class="cert-dot"></span>Power BI Avanzado</div>
-                            <div class="cert-item"><span class="cert-dot"></span>Análisis y modelado de datos con DAX y
-                                Power BI</div>
-                            <div class="cert-item"><span class="cert-dot"></span>Visualización de datos para BI</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======================== CTA FINAL ======================== -->
-    <section class="section cta-final" id="contacto">
-        <div class="cta-bg-gradient"></div>
-        <div class="container cta-container">
-            <div class="cta-content reveal">
-                <span class="section-label">📬 Hablemos</span>
-                <h2 class="cta-title" data-i18n-html="cta-title">¿Tienes un proyecto o <span class="text-accent">una
-                        oportunidad</span>?</h2>
-                <p class="cta-subtitle" data-i18n="cta-subtitle">
-                    Estoy disponible para nuevos retos profesionales. Ya sea una integración compleja,
-                    un proyecto backend o un equipo que necesite soporte técnico de nivel, me encantará escucharte.
-                </p>
-                <div class="cta-buttons">
-                    <a href="mailto:sworfishmx@gmail.com" class="btn-primary btn-large pulse-glow" id="ctaEmailMain">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                            <polyline points="22,6 12,13 2,6" />
-                        </svg>
-                        sworfishmx@gmail.com
-                    </a>
-                    <a href="https://github.com/GitJPam" target="_blank" class="btn-secondary btn-large"
-                        id="ctaGithubMain">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                        </svg>
-                        Ver GitHub
-                    </a>
-                    <a href="https://www.linkedin.com/in/juan-pablo-a-18717046/" target="_blank"
-                        class="btn-secondary btn-large" id="ctaLinkedinMain">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                        </svg>
-                        Ver LinkedIn
-                    </a>
-                </div>
-                <div class="contact-info-bar">
-                    <span>📲 314 610 87 83</span>
-                    <span class="contact-divider">•</span>
-                    <span>🇨🇴 Colombia</span>
-                    <span class="contact-divider">•</span>
-                    <span>✅ Disponible</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======================== FOOTER ======================== -->
-    <footer class="footer">
-        <div class="container footer-container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <img src="images/logo.png" alt="JP" class="footer-logo">
-                    <div>
-                        <h4 class="footer-name">Juan Pablo Acosta Murillo</h4>
-                        <p class="footer-tagline">Ingeniero Backend | Integraciones Empresariales</p>
-                    </div>
-                </div>
-                <div class="footer-links-grid">
-                    <div class="footer-col">
-                        <h5>Navegación</h5>
-                        <ul>
-                            <li><a href="#sobre-mi">Sobre Mí</a></li>
-                            <li><a href="#habilidades">Habilidades</a></li>
-                            <li><a href="#experiencia">Experiencia</a></li>
-                            <li><a href="#formacion">Formación</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h5>Contacto</h5>
-                        <ul>
-                            <li><a href="mailto:sworfishmx@gmail.com">Email</a></li>
-                            <li><a href="tel:+573146108783">Teléfono</a></li>
-                            <li><a href="https://github.com/GitJPam" target="_blank">GitHub</a></li>
-                            <li><a href="https://www.linkedin.com/in/juan-pablo-a-18717046/"
-                                    target="_blank">LinkedIn</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h5>Especialidades</h5>
-                        <ul>
-                            <li><a href="#habilidades">Backend C#/.NET</a></li>
-                            <li><a href="#habilidades">EDI/EDIFACT</a></li>
-                            <li><a href="#habilidades">SQL Server</a></li>
-                            <li><a href="#habilidades">QA & Testing</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p class="footer-copy">© 2026 Juan Pablo Acosta Murillo. Todos los derechos reservados.</p>
-                <p class="footer-location">🇨🇴 Hecho en Colombia</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Back to top -->
-    <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="18 15 12 9 6 15" />
-        </svg>
-    </button>
-
-    <script src="script.js"></script>
 </body>
-
 </html>
