@@ -293,6 +293,140 @@ ul {
     animation: gradient-shift 4s ease infinite, pulse-glow 3s ease-in-out infinite !important;
 }
 
+/* --- Proyectos grid --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.project-card {
+  background: var(--card-bg, #0f1318);
+  border: 1px solid var(--border-color, #1e2530);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+}
+.project-card:hover {
+  border-color: var(--primary, #38bdf8);
+  box-shadow: 0 12px 40px rgba(56,189,248,.1);
+  transform: translateY(-4px);
+}
+
+/* preview banner */
+.project-preview {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.project-preview-kiosko {
+  background: linear-gradient(135deg, #0a1628 0%, #0f2040 60%, #0a1628 100%);
+}
+.project-preview-finanzas {
+  background: linear-gradient(135deg, #0a1820 0%, #0d2535 60%, #0a1820 100%);
+}
+.project-preview-icon {
+  font-size: 3rem;
+  position: relative; z-index: 1;
+  filter: drop-shadow(0 0 12px rgba(56,189,248,.3));
+}
+/* decorative rings */
+.project-preview::before,
+.project-preview::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--primary, #38bdf8);
+  opacity: .12;
+}
+.project-preview::before { width: 110px; height: 110px; top: -20px; right: -15px; }
+.project-preview::after  { width:  65px; height:  65px; bottom: -8px; left: 12px; }
+
+/* body */
+.project-body {
+  padding: 1.4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+  flex: 1;
+}
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.project-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text, #e8edf3);
+}
+.project-version {
+  font-size: .68rem;
+  font-weight: 600;
+  padding: .18rem .55rem;
+  border-radius: 999px;
+  background: rgba(56,189,248,.1);
+  color: var(--primary, #38bdf8);
+  border: 1px solid rgba(56,189,248,.2);
+  letter-spacing: .04em;
+}
+.project-desc {
+  font-size: .845rem;
+  color: var(--text-muted, #6b7a8d);
+  line-height: 1.6;
+}
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+.project-tag {
+  padding: .22rem .65rem;
+  border-radius: 6px;
+  font-size: .7rem;
+  font-weight: 500;
+  background: rgba(255,255,255,.04);
+  color: var(--text-muted, #6b7a8d);
+  border: 1px solid var(--border-color, #1e2530);
+}
+.project-tag-accent {
+  background: rgba(56,189,248,.08);
+  color: var(--primary, #38bdf8);
+  border-color: rgba(56,189,248,.18);
+}
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin-top: auto;
+  padding-top: .25rem;
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--primary, #38bdf8);
+  text-decoration: none;
+  transition: gap .2s ease;
+}
+.project-link:hover { gap: .65rem; }
+
+/* si tu portafolio no define .section-subtitle, esto lo agrega */
+.section-subtitle {
+  color: var(--text-muted, #6b7a8d);
+  font-size: .95rem;
+  max-width: 520px;
+  line-height: 1.65;
+  margin-top: .5rem;
+}
+
+@media (max-width: 520px) {
+  .projects-grid { grid-template-columns: 1fr; }
+}
+
 /* ======================== ANIMATIONS ======================== */
 @keyframes gradient-shift {
 
